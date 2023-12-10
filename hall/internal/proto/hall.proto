@@ -18,3 +18,12 @@ message HelloWorldRequest{
 message HelloWorldResponse{
     string message = 1;
 }
+
+message LoadUserDataRequest{
+
+}
+
+message LoadUserDataResponse{
+  string name = 1;
+  int32 propCount = 2;
+}
