@@ -1,8 +1,9 @@
-package hall
+package services
 
 import (
-	"github.com/thkhxm/tgf"
+	"context"
 	"github.com/thkhxm/tgf/rpc"
+	"github.com/thkhxm/tgf/tgf-tutorial/common/pb"
 )
 
 //***************************************************
@@ -11,17 +12,9 @@ import (
 //@QQ群 7400585
 //author tim.huang<thkhxm@gmail.com>
 //@Description
-//2023/12/9
+//2023/12/10
 //***************************************************
 
-func Startup() {
-	r := rpc.NewRPCServer().
-		WithService(NewService()).
-		WithGatewayWS("8443", "/tgf", nil).
-		WithCache(tgf.CacheModuleClose).
-		WithRandomServicePort(8010, 8020).
-		WithWhiteService("HelloWorld").
-		Run()
-
-	<-r
+type IHallService interface {
+	HelloWorld(ctx context.Context, args *rpc.Args[*pb.HelloWorldRequest], reply *rpc.Reply[*pb.HelloWorldResponse]) (err error)
 }

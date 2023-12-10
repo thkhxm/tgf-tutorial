@@ -10,3 +10,11 @@ message LoginResponse{
   string userId  = 1;
   bool success = 2;
 }
+
+message HelloWorldRequest{
+    string name = 1;
+}
+
+message HelloWorldResponse{
+    string message = 1;
+}

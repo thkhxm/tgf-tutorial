@@ -2,6 +2,7 @@ package hall
 
 import (
 	"context"
+	"fmt"
 	"github.com/thkhxm/tgf/log"
 	"github.com/thkhxm/tgf/rpc"
 	"github.com/thkhxm/tgf/tgf-tutorial/common/pb"
@@ -19,8 +20,10 @@ import (
 type service struct {
 }
 
-func (s *service) Login(ctx context.Context, args *rpc.Args[*pb.LoginRequest], reply *rpc.Reply[*pb.LoginResponse]) (err error) {
-	log.DebugTag("hall", "hall login")
+func (s *service) HelloWorld(ctx context.Context, args *rpc.Args[*pb.HelloWorldRequest], reply *rpc.Reply[*pb.HelloWorldResponse]) (err error) {
+	// args.GetData() -> *pb.HelloWorldRequest
+	msg := fmt.Sprintf("hello world %s", args.GetData().GetName())
+	reply.SetData(&pb.HelloWorldResponse{Message: msg})
 	return
 }
 
