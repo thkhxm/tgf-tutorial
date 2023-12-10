@@ -6,6 +6,7 @@ import (
 	"github.com/thkhxm/tgf/log"
 	"github.com/thkhxm/tgf/rpc"
 	"github.com/thkhxm/tgf/tgf-tutorial/common/pb"
+	"github.com/thkhxm/tgf/util"
 )
 
 //***************************************************
@@ -17,7 +18,26 @@ import (
 //2023/12/9
 //***************************************************
 
+var (
+	ModuleName = "hall"
+	Version    = "v1.0.0"
+)
+
 type service struct {
+}
+
+func (s *service) Login(ctx context.Context, args *rpc.Args[*pb.LoginRequest], reply *rpc.Reply[*pb.LoginResponse]) (err error) {
+	var userId string
+	var pbData *pb.LoginResponse
+	if args.GetData().GetAccount() == "admin" && args.GetData().GetPassword() == "123" {
+		userId = util.GenerateSnowflakeId()
+		rpc.UserLogin(ctx, userId)
+		pbData = &pb.LoginResponse{Success: true}
+	} else {
+		pbData = &pb.LoginResponse{Success: false}
+	}
+	reply.SetData(pbData)
+	return
 }
 
 func (s *service) HelloWorld(ctx context.Context, args *rpc.Args[*pb.HelloWorldRequest], reply *rpc.Reply[*pb.HelloWorldResponse]) (err error) {
@@ -28,11 +48,11 @@ func (s *service) HelloWorld(ctx context.Context, args *rpc.Args[*pb.HelloWorldR
 }
 
 func (s *service) GetName() string {
-	return "hall"
+	return ModuleName
 }
 
 func (s *service) GetVersion() string {
-	return "1.0.0"
+	return Version
 }
 
 func (s *service) Startup() (bool, error) {

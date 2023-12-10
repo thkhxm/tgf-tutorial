@@ -20,7 +20,7 @@ func Startup() {
 		WithGatewayWS("8443", "/tgf", nil).
 		WithCache(tgf.CacheModuleClose).
 		WithRandomServicePort(8010, 8020).
-		WithWhiteService("HelloWorld").
+		WithWhiteService("Login").
 		Run()
 
 	<-r

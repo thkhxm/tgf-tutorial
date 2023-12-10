@@ -3,6 +3,7 @@ package robot_test
 import (
 	"github.com/golang/protobuf/proto"
 	"github.com/thkhxm/tgf/robot"
+	"github.com/thkhxm/tgf/tgf-tutorial/common/api"
 	"github.com/thkhxm/tgf/tgf-tutorial/common/pb"
 	"testing"
 )
@@ -24,16 +25,26 @@ func CreateRobot() robot.IRobot {
 
 func TestHelloWorld(t *testing.T) {
 	rb := CreateRobot()
-	req := &pb.HelloWorldRequest{Name: "tgf"}
 
-	rb.RegisterCallbackMessage("hall.HelloWorld", func(i robot.IRobot, bytes []byte) {
+	rb.RegisterCallbackMessage(api.HelloWorld.MessageType, func(i robot.IRobot, bytes []byte) {
 		resp := &pb.HelloWorldResponse{}
 		proto.Unmarshal(bytes, resp)
 		t.Log(resp.Message)
+	}).RegisterCallbackMessage(api.Login.MessageType, func(i robot.IRobot, bytes []byte) {
+		resp := &pb.LoginResponse{}
+		proto.Unmarshal(bytes, resp)
+		if resp.Success {
+			i.Send(api.HelloWorld.MessageType, &pb.HelloWorldRequest{Name: "tgf"})
+		} else {
+			t.Log("login fail")
+		}
 	})
 	//
 
-	rb.SendMessage("hall", "HelloWorld", req)
+	rb.Send(api.Login.MessageType, &pb.LoginRequest{
+		Account:  "admin",
+		Password: "123",
+	})
 
 	select {}
 }

@@ -44,6 +44,10 @@ github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o
 github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/thkhxm/tgf v1.0.0 h1:rNIpU8JJHIB3IVyXGV+rHjew6hVWv7+3iLhPm0A7wbY=
 github.com/thkhxm/tgf v1.0.0/go.mod h1:ABxQOhqlJc6QGZW6OuzqKc6nWpZt04ZW55J+bkLSw4I=
+github.com/thkhxm/tgf v1.0.1 h1:qYYouSE3VnDNkqq9rbO8YRPoYotmSeTQZy0yGpXk4bc=
+github.com/thkhxm/tgf v1.0.1/go.mod h1:ABxQOhqlJc6QGZW6OuzqKc6nWpZt04ZW55J+bkLSw4I=
+github.com/thkhxm/tgf v1.0.2 h1:epwPOOJzm2GlNxSiSeYDDu8kpYDQPJ68l88ANGzOGdY=
+github.com/thkhxm/tgf v1.0.2/go.mod h1:ABxQOhqlJc6QGZW6OuzqKc6nWpZt04ZW55J+bkLSw4I=
 github.com/twitchyliquid64/golang-asm v0.15.1 h1:SU5vSMR7hnwNxj24w34ZyCi/FmDZTkS4MhqMhdFk5YI=
 github.com/twitchyliquid64/golang-asm v0.15.1/go.mod h1:a1lVb/DtPvCB8fslRZhAngC2+aY1QWCk3Cedj/Gdt08=
 github.com/xuri/efp v0.0.0-20230802181842-ad255f2331ca/go.mod h1:ybY/Jr0T0GTCnYjKqmdwxyxn2BQf2RcQIIvex5QldPI=
