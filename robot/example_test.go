@@ -63,7 +63,7 @@ func TestRPCRobot(t *testing.T) {
 	}).RegisterCallbackMessage(api.LoadUserData.MessageType, func(i robot.IRobot, bytes []byte) {
 		resp := &pb.LoadUserDataResponse{}
 		proto.Unmarshal(bytes, resp)
-		t.Log(resp.Name, resp.PropCount)
+		t.Log(resp.Name, resp.Name, resp.PropCount)
 	})
 
 	rb.Send(api.Login.MessageType, &pb.LoginRequest{

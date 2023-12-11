@@ -2,8 +2,10 @@ package prop
 
 import (
 	"context"
+	"github.com/thkhxm/tgf/component"
 	"github.com/thkhxm/tgf/log"
 	"github.com/thkhxm/tgf/rpc"
+	"github.com/thkhxm/tgf/tgf-tutorial/common/conf"
 	"github.com/thkhxm/tgf/tgf-tutorial/common/model"
 	"github.com/thkhxm/tgf/util"
 	"math/rand"
@@ -31,7 +33,11 @@ type service struct {
 func (s *service) GetUserPropCount(ctx context.Context, args *model.GetUserPropArgs, reply *model.GetUserPropReply) (err error) {
 	userId := rpc.GetUserId(ctx)
 	reply.Count = s.propCountCache[args.PropId]
-	log.DebugTag("prop", "get %s user %s prop count %d ", userId, args.PropId, reply.Count)
+	if propConfig, h := component.GetGameConf[*conf.PropConf](args.PropId); h {
+		reply.Name = propConfig.Name
+	}
+	log.DebugTag("prop", "get %s user %s prop %s count %d ", userId, args.PropId, reply.Name, reply.Count)
+
 	return
 }
 
