@@ -14,7 +14,7 @@ import "github.com/thkhxm/tgf/db"
 type UserAccount struct {
 	db.Model
 	Account  string `orm:"pk"`
-	Password string `orm:"pk"`
+	Password string
 	UserId   string
 }
 
