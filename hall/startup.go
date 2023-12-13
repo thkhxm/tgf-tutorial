@@ -1,7 +1,6 @@
 package hall
 
 import (
-	"github.com/thkhxm/tgf"
 	"github.com/thkhxm/tgf/rpc"
 )
 
@@ -18,7 +17,7 @@ func Startup() {
 	r := rpc.NewRPCServer().
 		WithService(NewService()).
 		WithGatewayWS("8443", "/tgf", nil).
-		WithCache(tgf.CacheModuleClose).
+		//WithCache(tgf.CacheModuleClose).
 		WithRandomServicePort(8010, 8020).
 		WithWhiteService("Login").
 		Run()
